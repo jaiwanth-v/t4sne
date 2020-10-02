@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Button } from "@material-ui/core";
+import React, { useState } from "react";
+import _init from "./Speech";
 
-function App() {
+interface Props {}
+
+const App: React.FC<Props> = () => {
+  const [inp, setInput] = useState(" Hello, how are you today ?");
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInput(event.target.value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <textarea
+        onChange={handleChange}
+        id="text"
+        style={{ width: "500px", height: "300px" }}
+      >
+        {inp}
+      </textarea>
+      <Button id="play"> Play </Button>
+      <Button id="pause"> Pause </Button>
+      <Button id="resume"> Resume </Button>
+      <Button onClick={_init}>Hi</Button>
     </div>
   );
-}
+};
 
 export default App;
