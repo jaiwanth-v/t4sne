@@ -1,5 +1,3 @@
-import Speech from "speak-tts";
-
 function _prepareSpeakButton(speech: any) {
   const speakButton = document.getElementById("play");
   const pauseButton = document.getElementById("pause");

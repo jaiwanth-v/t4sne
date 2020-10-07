@@ -1,11 +1,13 @@
-import { Button, Fade, MenuItem, Select } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Button, Icon, MenuItem, Select } from "@material-ui/core";
+import React, { useContext, useEffect, useState } from "react";
+import { withRouter } from "react-router-dom";
 import "./NewUserPage.scss";
 import Speech from "speak-tts";
 import _prepareSpeakButton from "../../Speech";
 import useToggle from "../../Hooks/useToggle";
 import CustomToggle from "./CustomToggle/CustomToggle";
+import { AppContext } from "../../Context/App.context";
+import { SET_VOICE } from "../../Reducers/actionTypes";
 
 interface Props {
   history: any;
@@ -13,6 +15,11 @@ interface Props {
 
 const NewUserPage: React.FC<Props> = ({ history }) => {
   const speech = new Speech();
+
+  const [voice, setVoice] = useState<any>("");
+  const [data, setData] = useState<any>({});
+  const [hidden, toggleHidden] = useToggle(true);
+  const { dispatch } = useContext(AppContext);
 
   const _init = async () => {
     const speechData = await speech.init();
@@ -22,12 +29,11 @@ const NewUserPage: React.FC<Props> = ({ history }) => {
 
   useEffect(() => {
     _init();
-    setTimeout(() => toggleHidden(hidden), 3200);
+    setTimeout(() => {
+      toggleHidden(hidden);
+    }, 3200);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const [voice, setVoice] = useState<any>("");
-  const [data, setData] = useState<any>({});
-  const [hidden, toggleHidden] = useToggle(true);
 
   const handleVoice = (
     event: React.ChangeEvent<{
@@ -36,8 +42,7 @@ const NewUserPage: React.FC<Props> = ({ history }) => {
     }>
   ) => {
     setVoice(event.target.value);
-    speech.setLanguage(event.target.value.lang);
-    speech.setVoice(event.target.value.name);
+    console.log(voice);
     console.log(speech);
   };
 
@@ -75,6 +80,8 @@ const NewUserPage: React.FC<Props> = ({ history }) => {
   };
 
   const handleRoute = () => {
+    console.log(voice || data.voices[11]);
+    dispatch({ type: SET_VOICE, payload: voice || data.voices[11] });
     setTimeout(() => {
       history.push("/dashboard");
     }, 300);
@@ -117,12 +124,7 @@ const NewUserPage: React.FC<Props> = ({ history }) => {
                 </Select>
               )}
               <Button className="language-btn" onClick={handlePlay}>
-                <i
-                  style={{
-                    color: "whitesmoke",
-                  }}
-                  className="fas fa-volume-up"
-                ></i>
+                <Icon style={{ color: "whitesmoke" }}>volume_up</Icon>
               </Button>
 
               <div onClick={handleRoute} className="text-center">

@@ -7,9 +7,8 @@ div.welcome {
 .language-menu {
   animation: fadein 4s;
 }
-
-.fa-volume-up {
-  font-size: 20px !important;
+.dashboard {
+  animation: fadein2 1s;
 }
 
 *:focus {
@@ -40,6 +39,14 @@ $primary: rgba(209, 190, 190, 0.719);
     opacity: 0;
   }
   80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadein2 {
+  0% {
     opacity: 0;
   }
   100% {
