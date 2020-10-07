@@ -1,0 +1,77 @@
+li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.checkboxBtn {
+  position: relative;
+  display: inline-block;
+  padding: 15px 30px;
+  margin: 10px 50px 0 0;
+  border-radius: 25px;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.12);
+  color: whitesmoke;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.input {
+  position: absolute;
+  top: -100px;
+  left: -100px;
+}
+.input:checked ~ .inner {
+  text-shadow: 0 0 0.4px #000001;
+  -webkit-transform: translateX(11px);
+  transform: translateX(11px);
+}
+.input:checked ~ .inner .icon {
+  visibility: visible;
+  opacity: 1;
+}
+
+ul {
+  padding-inline-start: unset !important;
+}
+
+.inner {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-transition: -webkit-transform 300ms;
+  transition: -webkit-transform 300ms;
+  transition: transform 300ms;
+  transition: transform 300ms, -webkit-transform 300ms;
+}
+
+.icon {
+  visibility: hidden;
+  margin-right: 0;
+  -webkit-transition: opacity 300ms, -webkit-transform 300ms;
+  transition: opacity 300ms, -webkit-transform 300ms;
+  transition: opacity 300ms, transform 300ms;
+  transition: opacity 300ms, transform 300ms, -webkit-transform 300ms;
+  width: 0;
+  opacity: 0;
+  -webkit-transform: translateX(-22px);
+  transform: translateX(-22px);
+}
+.icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.icon svg path {
+  fill: #1eb285;
+}
