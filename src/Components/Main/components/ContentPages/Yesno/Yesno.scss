@@ -1,0 +1,38 @@
+.yesno {
+  height: 80vh;
+}
+
+.yes {
+  background-color: #43a047;
+}
+.no {
+  background-color: #e53935;
+}
+
+.yes,
+.no {
+  height: 400px;
+  border-radius: 4%;
+}
+
+.grow {
+  cursor: pointer;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  transition: -webkit-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, -webkit-transform 0.25s ease-out;
+}
+
+.grow:active,
+.grow:focus {
+  -webkit-transform: scale(0.9) !important;
+  transform: scale(0.9) !important;
+}
+.grow:hover {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}

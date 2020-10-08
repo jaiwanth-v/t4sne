@@ -3,19 +3,16 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import InputBase from "@material-ui/core/InputBase";
 import Typography from "@material-ui/core/Typography";
+import { blue, purple } from "@material-ui/core/colors";
 
-const styles: any = ({
-  spacing,
-  transitions,
-  breakpoints,
-  palette,
-  shape,
-}: any) => ({
+const styles: any = ({ spacing, transitions, breakpoints, shape }: any) => ({
   header: {
+    backgroud: purple[100],
     fontWeight: 900,
     minWidth: 0,
     fontSize: 18,
   },
+
   grow: {
     flexGrow: 1,
   },
@@ -23,9 +20,9 @@ const styles: any = ({
     position: "relative",
     marginRight: 8,
     borderRadius: shape.borderRadius,
-    background: 1210,
+    background: blue[100],
     "&:hover": {
-      background: palette.grey[300],
+      background: blue[50],
     },
     marginLeft: 0,
     width: "100%",
@@ -33,15 +30,6 @@ const styles: any = ({
       marginLeft: spacing(1),
       width: "auto",
     },
-  },
-  searchIcon: {
-    width: spacing(9),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
   },
   inputRoot: {
     color: "inherit",
@@ -64,7 +52,7 @@ const styles: any = ({
   },
 });
 
-const HeaderEx = ({ classes, screen }: any) => (
+const HeaderEx = ({ classes }: any) => (
   <>
     <Typography noWrap color={"textSecondary"} className={classes.header}>
       Welcome

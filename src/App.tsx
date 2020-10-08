@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Main from "./Components/Main/Main";
 import NewUserPage from "./Components/NewUserPage/NewUserPage";
 import { AppProvider } from "./Context/App.context";
@@ -17,10 +17,7 @@ const App: React.FC = () => {
 
   return (
     <AppProvider>
-      <Switch>
-        <Route exact path="/" render={() => componentToRender()} />
-        <Route exact path="/dashboard" component={Main} />
-      </Switch>
+      <Route path="/" render={() => componentToRender()} />
     </AppProvider>
   );
 };

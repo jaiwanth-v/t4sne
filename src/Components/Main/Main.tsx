@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import { AppContext } from "../../Context/App.context";
+import React from "react";
 import styled from "styled-components";
 import { StylesProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -23,7 +22,11 @@ import {
 } from "@mui-treasury/layout/presets";
 import HeaderEx from "./components/HeaderEx";
 import NavContentEx from "./components/NavContentEx";
-import ContentEx from "./components/ContentEx";
+import MainContent from "./components/ContentPages/MainContent/MainContent";
+import Yesno from "./components/ContentPages/Yesno/Yesno";
+import Interactions from "./components/ContentPages/Interactions/Interactions";
+import Configure from "./components/ContentPages/Configure/Configure";
+import { Route, Switch } from "react-router-dom";
 
 const Header = getHeader(styled);
 const DrawerSidebar = getDrawerSidebar(styled);
@@ -55,27 +58,27 @@ const Main: React.FC<Props> = () => {
       <StylesProvider injectFirst>
         <CssBaseline />
         <Root scheme={presets[preset]}>
-          {({ state: { sidebar } }) => (
-            <>
-              <Header>
-                <Toolbar>
-                  <SidebarTrigger sidebarId="primarySidebar" />
-                  {data.header && <HeaderEx />}
-                </Toolbar>
-              </Header>
-              <DrawerSidebar sidebarId="primarySidebar">
-                <SidebarContent>
-                  {data.nav && <NavContentEx />}
-                  {/* <NavHeaderEx collapsed={sidebar.primarySidebar.collapsed} /> */}
-                </SidebarContent>
+          <>
+            <Header>
+              <Toolbar>
+                <SidebarTrigger sidebarId="primarySidebar" />
+                {data.header && <HeaderEx />}
+              </Toolbar>
+            </Header>
+            <DrawerSidebar sidebarId="primarySidebar">
+              <SidebarContent>{data.nav && <NavContentEx />}</SidebarContent>
 
-                <CollapseBtn />
-              </DrawerSidebar>
-              <Content>
-                <ContentEx />
-              </Content>
-            </>
-          )}
+              <CollapseBtn />
+            </DrawerSidebar>
+            <Content>
+              <Switch>
+                <Route exact path="/" component={MainContent} />
+                <Route path="/yesno" component={Yesno} />
+                <Route path="/interactions" component={Interactions} />
+                <Route path="/configure" component={Configure} />
+              </Switch>
+            </Content>
+          </>
         </Root>
       </StylesProvider>
     </div>

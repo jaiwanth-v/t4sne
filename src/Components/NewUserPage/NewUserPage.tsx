@@ -1,21 +1,18 @@
 import { Button, Icon, MenuItem, Select } from "@material-ui/core";
 import React, { useContext, useEffect, useState } from "react";
-import { withRouter } from "react-router-dom";
 import "./NewUserPage.scss";
 import Speech from "speak-tts";
-import _prepareSpeakButton from "../../Speech";
 import useToggle from "../../Hooks/useToggle";
 import CustomToggle from "./CustomToggle/CustomToggle";
 import { AppContext } from "../../Context/App.context";
 import { SET_VOICE } from "../../Reducers/actionTypes";
+import Main from "../Main/Main";
 
-interface Props {
-  history: any;
-}
+interface Props {}
 
-const NewUserPage: React.FC<Props> = ({ history }) => {
+const NewUserPage: React.FC<Props> = () => {
   const speech = new Speech();
-
+  const [isNew, toggleNew] = useToggle(true);
   const [voice, setVoice] = useState<any>("");
   const [data, setData] = useState<any>({});
   const [hidden, toggleHidden] = useToggle(true);
@@ -24,7 +21,6 @@ const NewUserPage: React.FC<Props> = ({ history }) => {
   const _init = async () => {
     const speechData = await speech.init();
     setData(speechData);
-    _prepareSpeakButton(speech);
   };
 
   useEffect(() => {
@@ -42,8 +38,6 @@ const NewUserPage: React.FC<Props> = ({ history }) => {
     }>
   ) => {
     setVoice(event.target.value);
-    console.log(voice);
-    console.log(speech);
   };
 
   const handlePlay = () => {
@@ -57,37 +51,19 @@ const NewUserPage: React.FC<Props> = ({ history }) => {
     speech.speak({
       text: "Hello, how are you today ?",
       queue: false,
-      listeners: {
-        onstart: () => {
-          console.log("Start utterance");
-        },
-        onend: () => {
-          console.log("End utterance");
-        },
-        onresume: () => {
-          console.log("Resume utterance");
-        },
-        onboundary: (event: any) => {
-          console.log(
-            event.name +
-              " boundary reached after " +
-              event.elapsedTime +
-              " milliseconds."
-          );
-        },
-      },
     });
   };
 
   const handleRoute = () => {
-    console.log(voice || data.voices[11]);
     dispatch({ type: SET_VOICE, payload: voice || data.voices[11] });
     setTimeout(() => {
-      history.push("/dashboard");
+      toggleNew(isNew);
     }, 300);
   };
 
-  return (
+  return !isNew ? (
+    <Main />
+  ) : (
     <div>
       <div className="welcome">
         <span id="splash-overlay" className="splash" />
@@ -138,4 +114,4 @@ const NewUserPage: React.FC<Props> = ({ history }) => {
   );
 };
 
-export default withRouter(NewUserPage);
+export default NewUserPage;

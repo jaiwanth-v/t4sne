@@ -414,6 +414,10 @@ button.btn-floating {
   border: none;
 }
 
+a:hover {
+  color: unset !important;
+}
+
 .fixed-action-btn {
   position: fixed;
   right: 23px;
