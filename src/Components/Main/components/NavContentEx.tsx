@@ -47,12 +47,11 @@ const NavContentEx = () => {
     if (i !== 3) setSelected(i);
     else {
       const speech = new Speech();
-      // speech.setLanguage(voice.lang);
-      // speech.setVoice(voice.name);
-      // speech.speak({
-      //   text: "Help!",
-      //   // queue: false,
-      // });
+      speech.setLanguage(voice.lang);
+      speech.setVoice(voice.name);
+      speech.speak({
+        text: "Help!",
+      });
     }
   };
 

@@ -12,7 +12,7 @@ interface Props {}
 
 const NewUserPage: React.FC<Props> = () => {
   const speech = new Speech();
-  const [isNew, toggleNew] = useToggle(true);
+  const [isNew, toggleNew] = useToggle(false);
   const [voice, setVoice] = useState<any>("");
   const [data, setData] = useState<any>({});
   const [hidden, toggleHidden] = useToggle(true);

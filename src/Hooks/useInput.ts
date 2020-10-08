@@ -11,5 +11,5 @@ export default (InitialVal: any) => {
     setState(event.target.value);
   };
   const reset = () => setState("");
-  return [state, handleChange, reset];
+  return [state, setState, handleChange, reset];
 };
