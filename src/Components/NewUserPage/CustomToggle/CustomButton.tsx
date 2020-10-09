@@ -1,5 +1,5 @@
 import React from "react";
-import "./CustomToggle.scss";
+import "./CustomButton.scss";
 
 interface Props {}
 

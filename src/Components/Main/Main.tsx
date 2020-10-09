@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { StylesProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
+import "./Main.scss";
+
 import {
   Root,
   getHeader,
@@ -20,7 +22,7 @@ import {
   getCozyScheme,
   getMuiTreasuryScheme,
 } from "@mui-treasury/layout/presets";
-import HeaderEx from "./components/HeaderEx";
+import HeaderEx from "./components/ContentPages/Header/HeaderEx";
 import NavContentEx from "./components/NavContentEx";
 import MainContent from "./components/ContentPages/MainContent/MainContent";
 import Yesno from "./components/ContentPages/Yesno/Yesno";

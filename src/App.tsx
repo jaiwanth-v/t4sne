@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import Main from "./Components/Main/Main";
 import NewUserPage from "./Components/NewUserPage/NewUserPage";
 import { AppProvider } from "./Context/App.context";
+import "./App.css";
 
 const App: React.FC = () => {
   const isNew = (function () {

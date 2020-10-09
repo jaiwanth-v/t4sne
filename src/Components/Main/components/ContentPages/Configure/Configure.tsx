@@ -3,17 +3,19 @@ import { Button, Icon, MenuItem, Select } from "@material-ui/core";
 import Speech from "speak-tts";
 import { AppContext } from "../../../../../Context/App.context";
 import { SET_VOICE } from "../../../../../Reducers/actionTypes";
-import CustomToggle from "../../../../NewUserPage/CustomToggle/CustomToggle";
+import CustomToggle from "../../../../NewUserPage/CustomToggle/CustomButton";
 import { withRouter } from "react-router-dom";
+import "./Configure.scss";
+
 interface Props {
   history: any;
 }
 
 const Configure: React.FC<Props> = ({ history }) => {
   const speech = new Speech();
-  const [voice, setVoice] = useState<any>("");
+  const { state, dispatch } = useContext(AppContext);
+  const [voice, setVoice] = useState<any>(state.voice);
   const [data, setData] = useState<any>({});
-  const { dispatch } = useContext(AppContext);
 
   const _init = async () => {
     const speechData = await speech.init();
@@ -38,9 +40,6 @@ const Configure: React.FC<Props> = ({ history }) => {
     if (voice) {
       speech.setLanguage(voice.lang);
       speech.setVoice(voice.name);
-    } else {
-      speech.setLanguage(data.voices[11].lang);
-      speech.setVoice(data.voices[11].name);
     }
     speech.speak({
       text: "Hello, how are you today ?",
@@ -48,15 +47,17 @@ const Configure: React.FC<Props> = ({ history }) => {
     });
   };
 
+  console.log(voice);
+
   const handleRoute = () => {
-    dispatch({ type: SET_VOICE, payload: voice || data.voices[11] });
+    dispatch({ type: SET_VOICE, payload: voice });
     setTimeout(() => {
       history.push("/");
     }, 300);
   };
 
   return (
-    <div className="mt-5">
+    <div className="configure mt-5">
       <h2 className="text-center mr-4">Configure Voice</h2>
       <div className="text-center mt-5 ml-2">
         {data.voices && (
@@ -67,7 +68,7 @@ const Configure: React.FC<Props> = ({ history }) => {
             }}
             className="mx-md-3 mb-3 mb-md-0"
             variant="outlined"
-            value={voice || data.voices[11]}
+            value={voice}
             onChange={handleVoice}
           >
             {data.voices.map((voice: any, id: number) => (
@@ -77,11 +78,16 @@ const Configure: React.FC<Props> = ({ history }) => {
             ))}
           </Select>
         )}
-        <Button className="" onClick={handlePlay}>
-          <Icon>volume_up</Icon>
+        <Button onClick={handlePlay}>
+          <Icon style={{ color: "whitesmoke" }}>volume_up</Icon>
         </Button>
-        <div onClick={handleRoute} className="text-center mt-4">
-          <CustomToggle />
+        <div className="d-flex justify-content-center align-items-center">
+          <div
+            onClick={handleRoute}
+            className="button-submit text-center mt-4 mr-5"
+          >
+            <CustomToggle />
+          </div>
         </div>
       </div>
     </div>

@@ -39,14 +39,16 @@ const MainContent: React.FC<Props> = () => {
   return (
     <div className="main-wrapper d-flex justify-content-center align-items-center mr-5">
       <div className="main-content d-flex flex-column justify-content-center align-items-center">
-        <Typography variant="h3">Main Component</Typography>
+        <h2 style={{ color: "whitesmoke" }} className="text-center">
+          Hello Kids
+        </h2>
         <TextField className="m-5" value={input} onChange={handleChange} />
-        <Keyboard
+        {/* <Keyboard
           keyboardRef={(r) => (keyboard.current = r)}
           layoutName={layout}
           onChange={handleChangeKeyboard}
           onKeyPress={onKeyPress}
-        />
+        /> */}
       </div>
     </div>
   );

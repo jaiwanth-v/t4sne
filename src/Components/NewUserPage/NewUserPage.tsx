@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./NewUserPage.scss";
 import Speech from "speak-tts";
 import useToggle from "../../Hooks/useToggle";
-import CustomToggle from "./CustomToggle/CustomToggle";
+import CustomToggle from "./CustomToggle/CustomButton";
 import { AppContext } from "../../Context/App.context";
 import { SET_VOICE } from "../../Reducers/actionTypes";
 import Main from "../Main/Main";
