@@ -26,7 +26,7 @@ import HeaderEx from "./components/ContentPages/Header/HeaderEx";
 import NavContentEx from "./components/NavContentEx";
 import MainContent from "./components/ContentPages/MainContent/MainContent";
 import Yesno from "./components/ContentPages/Yesno/Yesno";
-import Interactions from "./components/ContentPages/Interactions/Interactions";
+import Interactions from "./components/ContentPages/Interactions/InteractionsPage/Interactions";
 import Configure from "./components/ContentPages/Configure/Configure";
 import { Route, Switch } from "react-router-dom";
 

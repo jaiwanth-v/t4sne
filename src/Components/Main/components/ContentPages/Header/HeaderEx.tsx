@@ -1,12 +1,36 @@
-import React from "react";
-import Typography from "@material-ui/core/Typography";
+import React, { useContext } from "react";
+import { AppContext } from "../../../../../Context/App.context";
+import { SPEAK_FROM_HISTORY } from "../../../../../Reducers/actionTypes";
 import "./Header.scss";
 
-const HeaderEx = () => (
-  <div className="d-flex justify-content-between vw-100 m-5 py-5">
-    <h5>Dashboard</h5>
-    <div className="header-history" />
-  </div>
-);
+const HeaderEx = () => {
+  const {
+    state: { history },
+    dispatch,
+  } = useContext(AppContext);
+  return (
+    <div className="header d-flex justify-content-between align-items-center vw-100 m-5 ">
+      <h5 className="dashboard-header">Dashboard</h5>
+      <div
+        className={`d-flex  ${
+          !history.length && "justify-content-center"
+        } align-items-center header-history`}
+      >
+        {!history.length
+          ? "Your history will appear here..."
+          : history.map((item: string) => (
+              <div
+                onClick={() =>
+                  dispatch({ type: SPEAK_FROM_HISTORY, payload: item })
+                }
+                className="history-item m-1"
+              >
+                {item}
+              </div>
+            ))}
+      </div>
+    </div>
+  );
+};
 
 export default HeaderEx;

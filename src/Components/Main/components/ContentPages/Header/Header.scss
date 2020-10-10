@@ -1,6 +1,39 @@
+.dashboard-header {
+  width: 10vw;
+  margin-right: 2px;
+}
+@media screen and (max-width: 1050px) {
+  .dashboard-header {
+    display: none;
+  }
+  .header {
+    margin: 0 !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  .header {
+    margin: 0 !important;
+  }
+}
+
 .header-history {
-  height: 30px;
-  width: 70vw;
-  background-color: white;
+  height: 40px;
+  width: 75vw;
+  white-space: nowrap;
+  padding-left: 10px;
+  overflow-x: hidden;
+  background-color: rgba(255, 255, 255, 0.897);
   border-radius: 20px;
+  .history-item {
+    cursor: pointer;
+    padding: 0 5px;
+    text-align: center;
+    border: 2px dotted black;
+    border-radius: 10px;
+    min-width: fit-content;
+    background-color: rgba(255, 255, 255, 0.8);
+    &::first-letter {
+      text-transform: capitalize;
+    }
+  }
 }
