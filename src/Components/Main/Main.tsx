@@ -23,7 +23,7 @@ import {
   getMuiTreasuryScheme,
 } from "@mui-treasury/layout/presets";
 import HeaderEx from "./components/ContentPages/Header/HeaderEx";
-import NavContentEx from "./components/NavContentEx";
+import NavContentEx from "./components/Sidebar/Sidebar";
 import MainContent from "./components/ContentPages/MainContent/MainContent";
 import Yesno from "./components/ContentPages/Yesno/Yesno";
 import Interactions from "./components/ContentPages/Interactions/InteractionsPage/Interactions";

@@ -1,4 +1,4 @@
-import { AppBar, Tab, Tabs } from "@material-ui/core";
+import { AppBar, Fade, Tab, Tabs } from "@material-ui/core";
 import React, { useContext } from "react";
 import { AppContext } from "../../../../../../Context/App.context";
 import { SPEAK_TEXT } from "../../../../../../Reducers/actionTypes";
@@ -15,29 +15,32 @@ const Interactions: React.FC<Props> = () => {
     setValue(newValue);
   };
   return (
-    <div>
-      <AppBar position="static">
-        <Tabs variant="scrollable" value={value} onChange={handleChange}>
-          {InteractionsList.map((item: typeof InteractionsList[0]) => (
-            <Tab label={item.type} key={item.type} />
-          ))}
-        </Tabs>
-      </AppBar>
-      {InteractionsList.map((item, idx) => (
-        <TabPanel index={idx} value={value}>
-          <div className="messages-container d-flex flex-wrap justify-content-center">
-            {item.list.map((msg) => (
-              <div
-                className="message-card grow"
-                onClick={() => dispatch({ type: SPEAK_TEXT, payload: msg })}
-              >
-                <p className="message">{msg}</p>
-              </div>
+    <Fade in={true}>
+      <div>
+        <AppBar position="static">
+          <Tabs variant="scrollable" value={value} onChange={handleChange}>
+            {InteractionsList.map((item: typeof InteractionsList[0]) => (
+              <Tab label={item.type} key={item.type} />
             ))}
-          </div>
-        </TabPanel>
-      ))}
-    </div>
+          </Tabs>
+        </AppBar>
+        {InteractionsList.map((item, idx) => (
+          <TabPanel key={idx} index={idx} value={value}>
+            <div className="messages-container d-flex flex-wrap justify-content-center">
+              {item.list.map((msg, idx) => (
+                <div
+                  className="message-card grow"
+                  key={idx}
+                  onClick={() => dispatch({ type: SPEAK_TEXT, payload: msg })}
+                >
+                  <p className="message">{msg}</p>
+                </div>
+              ))}
+            </div>
+          </TabPanel>
+        ))}
+      </div>
+    </Fade>
   );
 };
 

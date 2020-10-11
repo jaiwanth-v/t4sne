@@ -1,0 +1,47 @@
+$value: 0.6;
+
+.toggle-container {
+  margin-top: 2px;
+  margin-left: 2px;
+}
+
+input[type="checkbox"].switch_1 {
+  margin: 3px 0 0 5px;
+  font-size: 16px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 45px;
+  height: 1.5em;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 3em;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+input[type="checkbox"].switch_1:checked {
+  background: rgba(36, 206, 73, 0.712);
+}
+
+input[type="checkbox"].switch_1:after {
+  position: absolute;
+  content: "";
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background: #fff;
+  -webkit-box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3);
+  -webkit-transform: scale(0.7);
+  transform: scale(0.7);
+  left: 0;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+input[type="checkbox"].switch_1:checked:after {
+  left: calc(100% - 1.5em);
+}

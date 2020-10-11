@@ -1,6 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap");
 .main-wrapper {
   height: 80vh;
   .main-content {
-    width: 600px;
+    text-align: center;
+  }
+  .main-text-field input {
+    color: whitesmoke !important;
+    border: 1px solid whitesmoke !important;
+  }
+  .main-header {
+    font-size: 40px;
+    margin-top: 10%;
+    font-family: "Merriweather";
+  }
+  .keyboard {
+    margin-left: 30px;
+    width: 450px;
+    animation: fadeIn 1s;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

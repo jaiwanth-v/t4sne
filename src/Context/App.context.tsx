@@ -4,9 +4,16 @@ import { reducer } from "../Reducers/reducer";
 interface AppState {
   history: Array<string>;
   voice: any;
+  keyboard: boolean;
+  isDark: boolean;
 }
 
-let defaultValue: AppState = { history: [], voice: {} };
+let defaultValue: AppState = {
+  history: [],
+  voice: {},
+  keyboard: false,
+  isDark: false,
+};
 
 if (window.localStorage.getItem("voice"))
   defaultValue = window.localStorage.voice;

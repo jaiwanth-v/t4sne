@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Button, Icon, MenuItem, Select } from "@material-ui/core";
+import React, { memo, useContext, useEffect, useState } from "react";
+import { Button, Fade, Icon, MenuItem, Select } from "@material-ui/core";
 import Speech from "speak-tts";
 import { AppContext } from "../../../../../Context/App.context";
 import { SET_VOICE } from "../../../../../Reducers/actionTypes";
-import CustomToggle from "../../../../NewUserPage/CustomToggle/CustomButton";
+import CustomButton from "../../../../NewUserPage/CustomButton/CustomButton";
 import { withRouter } from "react-router-dom";
 import "./Configure.scss";
 
@@ -14,12 +14,13 @@ interface Props {
 const Configure: React.FC<Props> = ({ history }) => {
   const speech = new Speech();
   const { state, dispatch } = useContext(AppContext);
-  const [voice, setVoice] = useState<any>(state.voice);
+  const [voice, setVoice] = useState<any>("");
   const [data, setData] = useState<any>({});
 
   const _init = async () => {
     const speechData = await speech.init();
     setData(speechData);
+    setVoice(state.voice);
   };
 
   useEffect(() => {
@@ -47,8 +48,6 @@ const Configure: React.FC<Props> = ({ history }) => {
     });
   };
 
-  console.log(voice);
-
   const handleRoute = () => {
     dispatch({ type: SET_VOICE, payload: voice });
     setTimeout(() => {
@@ -57,41 +56,43 @@ const Configure: React.FC<Props> = ({ history }) => {
   };
 
   return (
-    <div className="configure mt-5">
-      <h2 className="text-center mr-4">Configure Voice</h2>
-      <div className="text-center mt-5 ml-2">
-        {data.voices && (
-          <Select
-            style={{
-              width: "300px",
-              height: "60px",
-            }}
-            className="mx-md-3 mb-3 mb-md-0"
-            variant="outlined"
-            value={voice}
-            onChange={handleVoice}
-          >
-            {data.voices.map((voice: any, id: number) => (
-              <MenuItem value={voice} key={id}>
-                {voice.name.replace("Microsoft ", "")}
-              </MenuItem>
-            ))}
-          </Select>
-        )}
-        <Button onClick={handlePlay}>
-          <Icon style={{ color: "whitesmoke" }}>volume_up</Icon>
-        </Button>
-        <div className="d-flex justify-content-center align-items-center">
-          <div
-            onClick={handleRoute}
-            className="button-submit text-center mt-4 mr-5"
-          >
-            <CustomToggle />
+    <Fade in={true}>
+      <div className="configure mt-5">
+        <h2 className="text-center mr-4">Configure Voice</h2>
+        <div className="text-center mt-5 ml-2">
+          {data.voices && voice !== null && (
+            <Select
+              style={{
+                width: "300px",
+                height: "60px",
+              }}
+              className="mx-md-3 mb-3 mb-md-0"
+              variant="outlined"
+              value={voice || data.voices[11]}
+              onChange={handleVoice}
+            >
+              {data.voices.map((voice: any, id: number) => (
+                <MenuItem value={voice} key={id}>
+                  {voice.name.replace("Microsoft ", "")}
+                </MenuItem>
+              ))}
+            </Select>
+          )}
+          <Button onClick={handlePlay}>
+            <Icon style={{ color: "whitesmoke" }}>volume_up</Icon>
+          </Button>
+          <div className="d-flex justify-content-center align-items-center">
+            <div
+              onClick={handleRoute}
+              className="button-submit text-center mt-4 mr-5"
+            >
+              <CustomButton />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Fade>
   );
 };
 
-export default withRouter(Configure);
+export default memo(withRouter(Configure));

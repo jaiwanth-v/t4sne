@@ -3,7 +3,7 @@ import "./CustomButton.scss";
 
 interface Props {}
 
-const CustomToggle: React.FC<Props> = () => {
+const CustomButton: React.FC<Props> = () => {
   return (
     <div className="text-center">
       <ul className="cloud__zNyUD">
@@ -41,4 +41,4 @@ const CustomToggle: React.FC<Props> = () => {
   );
 };
 
-export default CustomToggle;
+export default CustomButton;

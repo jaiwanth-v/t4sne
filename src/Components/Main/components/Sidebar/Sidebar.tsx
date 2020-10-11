@@ -1,13 +1,19 @@
-import React, { useContext, useState } from "react";
+import React, { memo, useContext, useState } from "react";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Icon from "@material-ui/core/Icon";
 import Divider from "@material-ui/core/Divider";
-import { Link } from "react-router-dom";
-import { AppContext } from "../../../Context/App.context";
-import { SPEAK_TEXT } from "../../../Reducers/actionTypes";
+import { Link, withRouter } from "react-router-dom";
+import { AppContext } from "../../../../Context/App.context";
+import { SPEAK_TEXT } from "../../../../Reducers/actionTypes";
+import CustomToggle from "./CustomToggle/CustomToggle";
+import "./Sidebar.scss";
+
+interface Props {
+  history: any;
+}
 
 const list = [
   {
@@ -16,14 +22,14 @@ const list = [
     to: "/",
   },
   {
-    primaryText: "Yes/No",
-    icon: "check",
-    to: "/yesno",
-  },
-  {
     primaryText: "Interactions",
     icon: "people",
     to: "/interactions",
+  },
+  {
+    primaryText: "Yes/No",
+    icon: "check",
+    to: "/yesno",
   },
   {
     primaryText: "Alert",
@@ -34,12 +40,16 @@ const list = [
   },
 ];
 
-const NavContentEx = () => {
+const NavContentEx: React.FC<Props> = ({ history }) => {
   const { dispatch } = useContext(AppContext);
 
-  const [selected, setSelected] = useState(
+  const [selected, setSelected] = useState<any>(
     list.findIndex((x) => x.to === window.location.pathname)
   );
+
+  history.listen(() => {
+    setSelected(list.findIndex((x) => x.to === window.location.pathname));
+  });
 
   const handleClick = (i: number) => {
     if (i !== 3) setSelected(i);
@@ -71,7 +81,7 @@ const NavContentEx = () => {
             </ListItem>
           ) : null
         )}
-        <Divider style={{ margin: "12px 0" }} />
+        <Divider style={{ margin: "12px 0 0" }} />
         <ListItem
           component={"/configure" ? Link : "div"}
           to="/configure"
@@ -87,18 +97,25 @@ const NavContentEx = () => {
             primaryTypographyProps={{ noWrap: true }}
           />
         </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <Icon>keyboard</Icon>
-          </ListItemIcon>
+        <Divider style={{ margin: "0px 0 12px" }} />
+
+        <ListItem>
           <ListItemText
-            primary={"Onscreen Keyboard"}
+            primary={"Virtual Keyboard"}
             primaryTypographyProps={{ noWrap: true }}
           />
+          <CustomToggle />
+        </ListItem>
+        <ListItem>
+          <ListItemText
+            primary={"Dark Mode"}
+            primaryTypographyProps={{ noWrap: true }}
+          />
+          <CustomToggle dark={true} />
         </ListItem>
       </List>
     </div>
   );
 };
 
-export default NavContentEx;
+export default memo(withRouter(NavContentEx));

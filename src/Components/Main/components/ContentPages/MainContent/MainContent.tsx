@@ -1,20 +1,26 @@
-import { TextField, Typography } from "@material-ui/core";
-import React, { useRef, useState } from "react";
+import { Button, Fade, TextField } from "@material-ui/core";
+import React, { useContext, useRef, useState } from "react";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
+import { AppContext } from "../../../../../Context/App.context";
 import useInput from "../../../../../Hooks/useInput";
+import { SPEAK_TEXT } from "../../../../../Reducers/actionTypes";
 import "./MainContent.scss";
 
 interface Props {}
 
 const MainContent: React.FC<Props> = () => {
+  const {
+    state: { keyboard },
+    dispatch,
+  } = useContext(AppContext);
+
   const [layout, setLayout] = useState("default");
   const [input, setInput] = useInput("");
-  const keyboard: any = useRef();
+  const keyboardRef: any = useRef();
 
   const handleChangeKeyboard = (input: string) => {
     setInput(input);
-    console.log("Input changed", input);
   };
 
   const handleShift = () => {
@@ -33,24 +39,49 @@ const MainContent: React.FC<Props> = () => {
     }>
   ) => {
     setInput(event.target.value);
-    keyboard.current?.setInput(input);
+    keyboardRef.current?.setInput(input);
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    dispatch({ type: SPEAK_TEXT, payload: input });
+    setInput("");
+    keyboardRef.current?.setInput("");
   };
 
   return (
-    <div className="main-wrapper d-flex justify-content-center align-items-center mr-5">
-      <div className="main-content d-flex flex-column justify-content-center align-items-center">
-        <h2 style={{ color: "whitesmoke" }} className="text-center">
-          Hello Kids
-        </h2>
-        <TextField className="m-5" value={input} onChange={handleChange} />
-        {/* <Keyboard
-          keyboardRef={(r) => (keyboard.current = r)}
-          layoutName={layout}
-          onChange={handleChangeKeyboard}
-          onKeyPress={onKeyPress}
-        /> */}
+    <Fade in={true}>
+      <div className="main-wrapper mr-5">
+        <div className="main-content  d-flex justify-content-center flex-column align-items-center">
+          <h2 className="text-center main-header">
+            Type what you want to talk
+          </h2>
+          <form
+            className="d-flex flex-column justify-content-center align-items-center"
+            onSubmit={handleSubmit}
+          >
+            <TextField
+              required
+              variant="outlined"
+              className="m-5 main-text-field"
+              value={input}
+              onChange={handleChange}
+            />
+            <Button type="submit">Speak</Button>
+          </form>
+          <Fade in={keyboard}>
+            <div className="keyboard mt-4">
+              <Keyboard
+                keyboardRef={(r) => (keyboardRef.current = r)}
+                layoutName={layout}
+                onChange={handleChangeKeyboard}
+                onKeyPress={onKeyPress}
+              />
+            </div>
+          </Fade>
+        </div>
       </div>
-    </div>
+    </Fade>
   );
 };
 

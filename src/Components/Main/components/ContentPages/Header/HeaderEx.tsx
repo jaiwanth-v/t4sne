@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { memo, useContext } from "react";
 import { AppContext } from "../../../../../Context/App.context";
 import { SPEAK_FROM_HISTORY } from "../../../../../Reducers/actionTypes";
 import "./Header.scss";
@@ -18,8 +18,9 @@ const HeaderEx = () => {
       >
         {!history.length
           ? "Your history will appear here..."
-          : history.map((item: string) => (
+          : history.map((item: string, idx: number) => (
               <div
+                key={idx}
                 onClick={() =>
                   dispatch({ type: SPEAK_FROM_HISTORY, payload: item })
                 }
@@ -33,4 +34,4 @@ const HeaderEx = () => {
   );
 };
 
-export default HeaderEx;
+export default memo(HeaderEx);
