@@ -11,8 +11,8 @@ interface Props {
 }
 
 const CustomToggle: React.FC<Props> = ({ dark }) => {
-  const { dispatch } = useContext(AppContext);
-  const handleClick = () => {
+  const { state, dispatch } = useContext(AppContext);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (dark === true) dispatch({ type: TOGGLE_DARK });
     else dispatch({ type: TOGGLE_KEYBOARD });
     document
@@ -21,7 +21,21 @@ const CustomToggle: React.FC<Props> = ({ dark }) => {
   };
   return (
     <div className="toggle-container switch_box box_1">
-      <input onClick={handleClick} type="checkbox" className="switch_1" />
+      {dark ? (
+        <input
+          onChange={handleChange}
+          checked={state.isDark}
+          type="checkbox"
+          className="switch_1"
+        />
+      ) : (
+        <input
+          onChange={handleChange}
+          checked={state.keyboard}
+          type="checkbox"
+          className="switch_1"
+        />
+      )}
     </div>
   );
 };

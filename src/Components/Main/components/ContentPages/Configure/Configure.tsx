@@ -51,7 +51,7 @@ const Configure: React.FC<Props> = ({ history }) => {
   const handleRoute = () => {
     dispatch({ type: SET_VOICE, payload: voice });
     setTimeout(() => {
-      history.push("/");
+      history.push("/interactions");
     }, 300);
   };
 

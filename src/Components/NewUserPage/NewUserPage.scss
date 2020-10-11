@@ -3,8 +3,12 @@ div.welcome {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background: #512da8;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
 
-  .language-btn {
+  .speak-btn {
+    margin-left: 10px;
     height: 60px;
     min-width: 60px !important;
     border-radius: 50% !important;
@@ -14,6 +18,21 @@ div.welcome {
     margin-right: 40px !important;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .speak-btn {
+    margin-top: 19px !important;
+    margin-left: 30px !important;
+  }
+  .language-menu {
+    margin-left: 0px !important;
+  }
+  .done-button {
+    margin-top: 20px;
+    margin-left: 38px;
+  }
+}
+
 .MuiSelect-icon {
   color: whitesmoke !important;
 }
@@ -23,6 +42,7 @@ div.welcome {
 }
 
 .language-menu {
+  margin-left: 40px;
   animation: fadein 4s;
 }
 .dashboard {
@@ -69,12 +89,6 @@ h1.title,
 }
 
 /* start welcome animation */
-
-div.welcome {
-  background: #512da8;
-  overflow: hidden;
-  -webkit-font-smoothing: antialiased;
-}
 
 .welcome .splash {
   height: 0px;

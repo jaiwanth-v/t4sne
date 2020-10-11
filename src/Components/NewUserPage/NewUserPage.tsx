@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./NewUserPage.scss";
 import Speech from "speak-tts";
 import useToggle from "../../Hooks/useToggle";
-import CustomToggle from "./CustomButton/CustomButton";
+import CustomButton from "./CustomButton/CustomButton";
 import { AppContext } from "../../Context/App.context";
 import { SET_VOICE } from "../../Reducers/actionTypes";
 import Main from "../Main/Main";
@@ -87,7 +87,7 @@ const NewUserPage: React.FC<Props> = () => {
                     height: "60px",
                     borderColor: "whitesmoke",
                   }}
-                  className="mx-md-3 mb-3 mb-md-0"
+                  className="select"
                   variant="outlined"
                   value={voice || data.voices[11]}
                   onChange={handleVoice}
@@ -99,12 +99,12 @@ const NewUserPage: React.FC<Props> = () => {
                   ))}
                 </Select>
               )}
-              <Button className="language-btn" onClick={handlePlay}>
+              <Button className="speak-btn" onClick={handlePlay}>
                 <Icon style={{ color: "whitesmoke" }}>volume_up</Icon>
               </Button>
 
-              <div onClick={handleRoute} className="text-center">
-                <CustomToggle />
+              <div onClick={handleRoute} className="text-center done-button">
+                <CustomButton />
               </div>
             </div>
           </span>

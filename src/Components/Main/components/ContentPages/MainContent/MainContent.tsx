@@ -1,4 +1,4 @@
-import { Button, Fade, TextField } from "@material-ui/core";
+import { Fade, TextField } from "@material-ui/core";
 import React, { useContext, useRef, useState } from "react";
 import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
@@ -6,6 +6,7 @@ import { AppContext } from "../../../../../Context/App.context";
 import useInput from "../../../../../Hooks/useInput";
 import { SPEAK_TEXT } from "../../../../../Reducers/actionTypes";
 import "./MainContent.scss";
+import Robot from "./robot-waving.png";
 
 interface Props {}
 
@@ -53,9 +54,8 @@ const MainContent: React.FC<Props> = () => {
     <Fade in={true}>
       <div className="main-wrapper mr-5">
         <div className="main-content  d-flex justify-content-center flex-column align-items-center">
-          <h2 className="text-center main-header">
-            Type what you want to talk
-          </h2>
+          <img src={Robot} height="250px" width="250px" alt="Robot " />
+          <h6>Go ahead and type something, I'll do the talking for you.</h6>
           <form
             className="d-flex flex-column justify-content-center align-items-center"
             onSubmit={handleSubmit}
@@ -63,11 +63,14 @@ const MainContent: React.FC<Props> = () => {
             <TextField
               required
               variant="outlined"
+              fullWidth
               className="m-5 main-text-field"
               value={input}
               onChange={handleChange}
             />
-            <Button type="submit">Speak</Button>
+            <button className="button-speak" type="submit">
+              Speak
+            </button>
           </form>
           <Fade in={keyboard}>
             <div className="keyboard mt-4">

@@ -1,4 +1,4 @@
-import React, { memo, useContext, useState } from "react";
+import React, { memo, useState } from "react";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -6,8 +6,6 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Icon from "@material-ui/core/Icon";
 import Divider from "@material-ui/core/Divider";
 import { Link, withRouter } from "react-router-dom";
-import { AppContext } from "../../../../Context/App.context";
-import { SPEAK_TEXT } from "../../../../Reducers/actionTypes";
 import CustomToggle from "./CustomToggle/CustomToggle";
 import "./Sidebar.scss";
 
@@ -41,8 +39,6 @@ const list = [
 ];
 
 const NavContentEx: React.FC<Props> = ({ history }) => {
-  const { dispatch } = useContext(AppContext);
-
   const [selected, setSelected] = useState<any>(
     list.findIndex((x) => x.to === window.location.pathname)
   );
@@ -54,7 +50,8 @@ const NavContentEx: React.FC<Props> = ({ history }) => {
   const handleClick = (i: number) => {
     if (i !== 3) setSelected(i);
     else {
-      dispatch({ type: SPEAK_TEXT, payload: "Help!!" });
+      let audio = new Audio("/alert.mp3");
+      audio.play();
     }
   };
 

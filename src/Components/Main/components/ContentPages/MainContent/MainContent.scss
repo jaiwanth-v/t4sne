@@ -4,9 +4,12 @@
   .main-content {
     text-align: center;
   }
-  .main-text-field input {
-    color: whitesmoke !important;
-    border: 1px solid whitesmoke !important;
+  .main-text-field {
+    width: 60vw;
+    input {
+      color: whitesmoke !important;
+      border: 1px solid whitesmoke !important;
+    }
   }
   .main-header {
     font-size: 40px;
@@ -14,9 +17,44 @@
     font-family: "Merriweather";
   }
   .keyboard {
-    margin-left: 30px;
-    width: 450px;
+    margin-left: (30px);
+    width: unquote("min(99vw, 450px)");
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .keyboard {
+    margin-left: (18px) !important;
+
     animation: fadeIn 1s;
+  }
+}
+
+$primary: whitesmoke;
+
+.button-speak {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: none;
+  height: 50px;
+  text-align: center;
+  width: 130px;
+  border-radius: 40px;
+  background: rgba(114, 36, 216, 0.377);
+  border: 2px solid $primary;
+  color: $primary;
+  letter-spacing: 1px;
+  text-shadow: 0;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  &:hover {
+    color: black;
+    background: whitesmoke;
+  }
+  &:active {
+    letter-spacing: 4px;
   }
 }
 
