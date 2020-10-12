@@ -147,8 +147,6 @@ export default [
       "say that again",
       "ask me a yes/no question",
       "please guess what I am saying",
-      "yes",
-      "no",
     ],
   },
 
@@ -248,10 +246,10 @@ export default [
     type: "Calls",
     list: [
       "May I talk to ",
-      "This is Hannah, please call me back",
+      "This is ",
       "I use a speech-generating device to talk, please don't hangup while I make my message.",
       "call me back at ",
-      "Message 1",
+      "Please call me back",
       "Message 2",
       "Message 3",
     ],

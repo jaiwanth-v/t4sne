@@ -2,31 +2,17 @@ $sm: 600px !default;
 $md: 1279px !default;
 
 @media screen and (min-width: 600px) and (max-width: 1279px) {
-  #root
-    > div
-    > div.MuiDrawer-docked
-    > div
-    > div.SidebarContent
-    > div
-    > ul
-    > li:nth-child(8) {
+  div.MuiDrawer-docked > div > div.SidebarContent > div > ul > li:nth-child(8) {
     display: none;
   }
-  #root
-    > div
-    > div.MuiDrawer-docked
-    > div
-    > div.SidebarContent
-    > div
-    > ul
-    > li:nth-child(9) {
+  div.MuiDrawer-docked > div > div.SidebarContent > div > ul > li:nth-child(9) {
     display: none;
   }
 
-  #root > div > div.MuiDrawer-root.MuiDrawer-docked > div {
+  div.MuiDrawer-root.MuiDrawer-docked > div {
     overflow-y: unset;
   }
-  #root > div > div.MuiDrawer-root.MuiDrawer-docked > div > div.SidebarContent {
+  div.MuiDrawer-root.MuiDrawer-docked > div > div.SidebarContent {
     overflow-y: unset;
   }
 }

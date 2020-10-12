@@ -6,11 +6,7 @@ import { AppProvider } from "./Context/App.context";
 import "./App.css";
 
 const App: React.FC = () => {
-  const isNew = (function () {
-    if (window.localStorage.getItem("voice") === null) return true;
-    return false;
-  })();
-
+  const isNew = window.localStorage.getItem("voice") === null ? true : false;
   const componentToRender = () => {
     if (isNew) return <NewUserPage />;
     return <Main isNew={false} />;

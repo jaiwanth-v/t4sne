@@ -10,7 +10,7 @@ const Yesno: React.FC<Props> = () => {
   const { dispatch } = useContext(AppContext);
   return (
     <Fade in={true}>
-      <div className="yesno d-flex justify-content-between align-items-center">
+      <div className="yesno d-md-flex justify-content-between align-items-center">
         <div
           onClick={() => dispatch({ type: SPEAK_TEXT, payload: "Yes" })}
           className="yes grow flex-grow-1 shadow-lg m-5 d-flex justify-content-center align-items-center"

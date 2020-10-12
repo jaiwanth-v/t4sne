@@ -1,4 +1,5 @@
 import React, { memo, useContext } from "react";
+import { Link } from "react-router-dom";
 import { AppContext } from "../../../../../Context/App.context";
 import { SPEAK_FROM_HISTORY } from "../../../../../Reducers/actionTypes";
 import "./Header.scss";
@@ -10,7 +11,9 @@ const HeaderEx = () => {
   } = useContext(AppContext);
   return (
     <div className="header d-flex justify-content-between align-items-center vw-100 m-5 ">
-      <h5 className="dashboard-header">Dashboard</h5>
+      <Link to="/">
+        <h5 className="dashboard-header">Dashboard</h5>
+      </Link>
       <div
         className={`d-flex  ${
           !history.length && "justify-content-center"

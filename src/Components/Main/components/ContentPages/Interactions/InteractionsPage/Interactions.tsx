@@ -31,7 +31,12 @@ const Interactions: React.FC<Props> = () => {
                 <div
                   className="message-card grow"
                   key={idx}
-                  onClick={() => dispatch({ type: SPEAK_TEXT, payload: msg })}
+                  onClick={() =>
+                    dispatch({
+                      type: SPEAK_TEXT,
+                      payload: msg,
+                    })
+                  }
                 >
                   <p className="message">{msg}</p>
                 </div>
