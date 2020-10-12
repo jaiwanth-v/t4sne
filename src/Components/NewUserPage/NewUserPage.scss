@@ -19,6 +19,20 @@ div.welcome {
   }
 }
 
+.welcome {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  transform: translateY(-100%);
+  animation: slide-in 1s forwards;
+}
+
+@keyframes slide-in {
+  100% {
+    transform: translateY(0%);
+  }
+}
+
 @media screen and (max-width: 480px) {
   .speak-btn {
     margin-top: 19px !important;
@@ -43,10 +57,18 @@ div.welcome {
 
 .language-menu {
   margin-left: 40px;
-  animation: fadein 4s;
+  animation: fadein 3s;
+}
+
+.welcome h1 {
+  animation: fadein 1.5s;
+}
+
+.welcome p {
+  animation: fadein 3s;
 }
 .dashboard {
-  animation: fadein2 1s;
+  animation: fadein 1s;
 }
 
 *:focus {
@@ -61,7 +83,7 @@ div.welcome {
   0% {
     opacity: 0;
   }
-  80% {
+  50% {
     opacity: 0;
   }
   100% {
@@ -70,6 +92,9 @@ div.welcome {
 }
 @keyframes fadein2 {
   0% {
+    opacity: 0;
+  }
+  80% {
     opacity: 0;
   }
   100% {
@@ -88,23 +113,17 @@ h1.title,
   font-weight: 900;
 }
 
-/* start welcome animation */
-
 .welcome .splash {
-  height: 0px;
-  padding: 0px;
-  border: 130em solid #7639e7;
+  height: 100%;
+  padding: 0px 100%;
   position: fixed;
   left: 50%;
-  top: 100%;
+  top: 50%;
   display: block;
   box-sizing: initial;
   overflow: hidden;
-
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  animation: puff 0.5s 1.8s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards,
-    borderRadius 0.2s 2.3s linear forwards;
 }
 
 .row {
@@ -169,31 +188,6 @@ h1.title,
 
 .grey-text.text-lighten-3 {
   color: #eeeeee !important;
-}
-
-.welcome #welcome {
-  background: #311b92;
-  width: 56px;
-  height: 56px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  overflow: hidden;
-  opacity: 0;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  animation: init 0.5s 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards,
-    moveDown 1s 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards,
-    /* moveUp 1s 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, */
-      materia 0.5s 1.8s cubic-bezier(0.86, 0, 0.07, 1) forwards,
-    hide 2s 2.6s ease forwards;
-}
-
-/* moveIn */
-.welcome header,
-.welcome a.btn {
-  opacity: 0;
-  animation: moveIn 2s 3.1s ease forwards;
 }
 
 @keyframes init {

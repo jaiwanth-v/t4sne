@@ -7,13 +7,13 @@ import "./App.css";
 
 const App: React.FC = () => {
   const isNew = (function () {
-    if (window.localStorage.getItem("visited") === null) return true;
+    if (window.localStorage.getItem("voice") === null) return true;
     return false;
   })();
 
   const componentToRender = () => {
     if (isNew) return <NewUserPage />;
-    return <Main />;
+    return <Main isNew={false} />;
   };
 
   return (

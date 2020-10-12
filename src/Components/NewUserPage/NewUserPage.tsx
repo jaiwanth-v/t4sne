@@ -12,7 +12,7 @@ interface Props {}
 
 const NewUserPage: React.FC<Props> = () => {
   const speech = new Speech();
-  const [isNew, toggleNew] = useToggle(true);
+  const [New, toggleNew] = useToggle(true);
   const [voice, setVoice] = useState<any>("");
   const [data, setData] = useState<any>({});
   const [hidden, toggleHidden] = useToggle(true);
@@ -57,18 +57,15 @@ const NewUserPage: React.FC<Props> = () => {
   const handleRoute = () => {
     dispatch({ type: SET_VOICE, payload: voice || data.voices[11] });
     setTimeout(() => {
-      toggleNew(isNew);
+      toggleNew(New);
     }, 300);
   };
 
-  return !isNew ? (
-    <Main />
+  return !New ? (
+    <Main isNew={true} />
   ) : (
-    <div>
+    <div id="slide">
       <div className="welcome">
-        <span id="splash-overlay" className="splash" />
-        <span id="welcome" className="z-depth-4" />
-
         <main className="valign-wrapper mt-5">
           <span className="container grey-text text-lighten-1 ">
             <h1 className="title grey-text center-align text-lighten-3">

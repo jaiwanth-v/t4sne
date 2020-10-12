@@ -4,6 +4,7 @@ import {
   SPEAK_FROM_HISTORY,
   TOGGLE_KEYBOARD,
   TOGGLE_DARK,
+  INIT_STATE,
 } from "./actionTypes";
 import {
   enable as enableDarkMode,
@@ -36,6 +37,14 @@ const toggleDark = (state: AppState) => {
 };
 
 export const reducer = (state: AppState, { type, payload }: Action) => {
+  if (type === INIT_STATE) {
+    return {
+      history: [],
+      keyboard: false,
+      isDark: false,
+      voice: payload,
+    };
+  }
   if (type === SET_VOICE) return { ...state, voice: payload };
   if (type === SPEAK_TEXT || type === SPEAK_FROM_HISTORY) {
     const speech = new Speech();
