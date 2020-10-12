@@ -45,7 +45,14 @@ export const reducer = (state: AppState, { type, payload }: Action) => {
       voice: payload,
     };
   }
-  if (type === SET_VOICE) return { ...state, voice: payload };
+  if (type === SET_VOICE) {
+    const voice = {
+      name: payload.name,
+      lang: payload.lang,
+    };
+    window.localStorage.setItem("voice", JSON.stringify(voice));
+    return { ...state, voice: payload };
+  }
   if (type === SPEAK_TEXT || type === SPEAK_FROM_HISTORY) {
     const speech = new Speech();
     speech.setVoice(state.voice.name);
